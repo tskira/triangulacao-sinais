@@ -19,10 +19,9 @@ def mmq(receiver_position):
     x0 = receiver[0][0]
     y0 = receiver[0][1]
     for i in range(4):
-        a[i,0] = receiver[i][0] - x0
-        a[i,1] = receiver[i][1] - y0
-        b[i,0] = -(x0*x0) -(y0*y0) + (r[0]*r[0]) + (receiver[i][0]*receiver[i][0]) + (receiver[i][1]*receiver[i][1]) - (r[i]*r[i])     
-    
+        a[i,0] = receiver[i+1][0] - x0
+        a[i,1] = receiver[i+1][1] - y0
+        b[i,0] = -(x0*x0) -(y0*y0) + (r[0]*r[0]) + (receiver[i+1][0]*receiver[i+1][0]) + (receiver[i+1][1]*receiver[i+1][1]) - (r[i+1]*r[i+1]) 
     a = 2 * a
     return (np.linalg.inv(a.transpose() * a) * a.transpose() * b)
 
@@ -37,7 +36,6 @@ plot_receiver2 = plt.Circle((5.55, 1.28),  r[1], color = 'b', alpha = .6)
 plot_receiver3 = plt.Circle((0.35, -6.94),  r[2], color = 'm', alpha = .6)
 plot_receiver4 = plt.Circle((0.16, 7.35),  r[3], color = 'y', alpha = .6)
 plot_receiver5 = plt.Circle((-7.35, 4.55),  r[4], color = 'k', alpha = .6)
-plt.plot([3.0], [3.0], 'go')
 plt.plot([resp[0,0]], [resp[1,0]], 'ro')
 ax = plt.gca()
 ax.add_artist(plot_receiver1)
