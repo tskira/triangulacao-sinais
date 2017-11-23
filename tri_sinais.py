@@ -19,12 +19,12 @@ def mmq(receiver_position):
         a[i,0] = receiver[i+1][0] - x0
         a[i,1] = receiver[i+1][1] - y0
         b[i,0] = -(x0*x0) -(y0*y0) + (r[0]*r[0]) + (receiver[i+1][0]*receiver[i+1][0]) + (receiver[i+1][1]*receiver[i+1][1]) - (r[i+1]*r[i+1]) 
-    print(a)
     a = 2 * a
-    return (np.linalg.inv(a.transpose() * a) * a.transpose() * b)
+    return (((np.linalg.inv(a.transpose() * a)) * a.transpose()) * b)
 
 read_position = tuple(map(float, input().split()))
 resp = mmq(read_position)
+print(resp)
 
 ''' plot no grafico '''
 
